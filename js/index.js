@@ -1,11 +1,11 @@
 // Header Buttons
-let newGame = document.getElementById("new-game"); 
-let Pause =  document.getElementById("pause"); 
-let Reset = document.getElementById("reset"); 
-let Resize = document.getElementById("resize"); 
+let Start = document.getElementById("start");
+let Pause =  document.getElementById("pause");
+let Reset = document.getElementById("reset");
+let Resize = document.getElementById("resize");
 
-newGame.addEventListener("click", () => {
-    // Restarts the game with the set position.
+Start.addEventListener("click", () => {
+    // Resumes ongoing session from pause.
 
 });
 Pause.addEventListener("click", () => {
@@ -13,7 +13,7 @@ Pause.addEventListener("click", () => {
 
 });
 Reset.addEventListener("click", () => {
-    // Resets the board to blank.
+    // Restarts the game to blank position.
 
 });
 Resize.addEventListener("click", () => {
@@ -24,7 +24,7 @@ Resize.addEventListener("click", () => {
 // Boards logic
 
 function generatePalette(n) {
-    // Generate board  
+    // Generate board
     for (let i = 0; i < (n*n); i++) {
         let divElem = document.createElement('div');
         divElem.setAttribute('class', 'cell');
@@ -40,7 +40,7 @@ function generatePalette(n) {
         })
 
     });
-    
+
 }
 
 function resizePalette(n) {
@@ -49,10 +49,10 @@ function resizePalette(n) {
 
 
 function checkNeigbours() {
-    // return 0 (alive) or 1 (dead) for each cell based on its neighbours. 
-    
+    // return 0 (alive) or 1 (dead) for each cell based on its neighbours.
+
 }
 
 
 
-
+// Make mouse move the page.

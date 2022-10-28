@@ -33,25 +33,26 @@
 .boards-container {
     display: flex;
     justify-content: center;
+    margin-left: 4300px;
 }
 
 #boards {
     display: grid;
     grid-template-columns: repeat(500, 1fr);
-    margin-top: 20px;
+    margin: auto;
+    /* 452rem*/
+    /*padding: 1.5rem 1.5rem 1.5rem 1.5rem;*/
+    border: 5px solid black;
+    
 }
 .cell {
-    width: 10px;
-    height: 10px;
-    /*border: 1px solid black;*/
+    width: 15px;
+    height: 15px;
     border: 1px solid gray;
 }
 .cell:hover {
     cursor: pointer;
 }
-/* 10px =  70 palette size = 100 grid-temp-cols (large) */
-/*  5px = 140 palette size = 180 grid-temp-cols (small) */
-
 .options {
     margin: -20px ;
     padding: 0;
@@ -75,17 +76,5 @@ li:active {
     color: black;
 }
 
-
-.small, .large {
-    background-color: green;
-    color: white;
-}
-
-.small {
-    margin-left: -80px;
-}
-.large {
-    margin-right: -80px;
-}
 
 
