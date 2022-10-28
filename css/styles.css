@@ -1,0 +1,91 @@
+.body, .html {
+    margin: 0;
+    padding: 0;
+}
+
+.header-text{
+    margin-top: 0;
+}
+.body {
+    position: relative;
+}
+
+.header-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 10vh;
+    border: 3px solid black;
+    background-color: gray;
+    color: white;
+    z-index: 1;
+    position: fixed;
+    width: 600px;
+    box-shadow: -3px 3px black;
+}
+.header-text {
+    font-weight: 700;
+    font-size: larger;
+}
+
+.boards-container {
+    display: flex;
+    justify-content: center;
+}
+
+#boards {
+    display: grid;
+    grid-template-columns: repeat(500, 1fr);
+    margin-top: 20px;
+}
+.cell {
+    width: 10px;
+    height: 10px;
+    /*border: 1px solid black;*/
+    border: 1px solid gray;
+}
+.cell:hover {
+    cursor: pointer;
+}
+/* 10px =  70 palette size = 100 grid-temp-cols (large) */
+/*  5px = 140 palette size = 180 grid-temp-cols (small) */
+
+.options {
+    margin: -20px ;
+    padding: 0;
+}
+.options > ul {
+    display: flex;
+    justify-content: space-around;
+}
+li {
+    border: 1px solid black;
+    padding: 2px 4px;
+    border-radius: 5px;
+    box-shadow: -3px 3px black;
+}
+li:hover {
+    cursor: pointer;
+    font-style: italic;
+}
+li:active {
+    background-color: white;
+    color: black;
+}
+
+
+.small, .large {
+    background-color: green;
+    color: white;
+}
+
+.small {
+    margin-left: -80px;
+}
+.large {
+    margin-right: -80px;
+}
+
+
