@@ -24,28 +24,27 @@ instructions.addEventListener("click", () => {
 
 });
 
-let eraserOn = false; 
+let eraserOn = false;
 /* Not-so bright idea lol.
 keeps track of if I'm trying to clear a cell or mark a cell.
 */
 eraser.addEventListener("click", () => {
     // Allow user to erase cells that have been marked.
     let cells = document.querySelectorAll(".cell");
-    let eraserElem = document.getElementById('eraser');
 
     if (eraserOn === false) {
         cells.forEach((item) => {
             item.setAttribute('id', 'change-cursor');
         });
         eraserOn = true;
-        eraserElem.innerHTML = "Eraser(ON)";
+        eraser.innerHTML = "Eraser(ON)";
 
     } else {
         cells.forEach((item) => {
             item.removeAttribute('id');
         })
         eraserOn = false;
-        eraserElem.innerHTML = "Eraser(OFF)";
+        eraser.innerHTML = "Eraser(OFF)";
     }
 });
 
@@ -70,7 +69,7 @@ function generatePalette(n) {
         item.addEventListener("click", () => {
             console.log("clicked")
 
-            if (eraserOn) { // eraserOn from line 27. 
+            if (eraserOn) { // eraserOn from line 27.
                 item.style.backgroundColor = "white";
             } else {
                 item.style.backgroundColor = "black";
