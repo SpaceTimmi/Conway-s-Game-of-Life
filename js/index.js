@@ -1,22 +1,55 @@
 // Header Buttons
-let Start = document.getElementById("start");
-let Pause =  document.getElementById("pause");
-let Reset = document.getElementById("reset");
-let Resize = document.getElementById("resize");
+let start = document.getElementById("start");
+let pause =  document.getElementById("pause");
+let reset = document.getElementById("reset");
+let instructions = document.getElementById("instructions");
+let eraser = document.getElementById("eraser");
+let resize = document.getElementById("resize");
 
-Start.addEventListener("click", () => {
+start.addEventListener("click", () => {
     // Resumes ongoing session from pause.
 
 });
-Pause.addEventListener("click", () => {
+pause.addEventListener("click", () => {
     // Pauses ongoing session.
 
 });
-Reset.addEventListener("click", () => {
+reset.addEventListener("click", () => {
     // Restarts the game to blank position.
 
 });
-Resize.addEventListener("click", () => {
+
+instructions.addEventListener("click", () => {
+    // Toogle the instructions menu off and on.
+
+});
+
+let eraserOn = false; 
+/* Not-so bright idea lol.
+keeps track of if I'm trying to clear a cell or mark a cell.
+*/
+eraser.addEventListener("click", () => {
+    // Allow user to erase cells that have been marked.
+    let cells = document.querySelectorAll(".cell");
+    let eraserElem = document.getElementById('eraser');
+
+    if (eraserOn === false) {
+        cells.forEach((item) => {
+            item.setAttribute('id', 'change-cursor');
+        });
+        eraserOn = true;
+        eraserElem.innerHTML = "Eraser(ON)";
+
+    } else {
+        cells.forEach((item) => {
+            item.removeAttribute('id');
+        })
+        eraserOn = false;
+        eraserElem.innerHTML = "Eraser(OFF)";
+    }
+});
+
+resize.addEventListener("click", () => {
     // Resize the pixels onscreen.
      generatePalette(250);
 });
@@ -36,7 +69,12 @@ function generatePalette(n) {
     document.querySelectorAll(".cell").forEach((item) => {
         item.addEventListener("click", () => {
             console.log("clicked")
-            item.style.backgroundColor = "black";
+
+            if (eraserOn) { // eraserOn from line 27. 
+                item.style.backgroundColor = "white";
+            } else {
+                item.style.backgroundColor = "black";
+            }
         })
 
     });

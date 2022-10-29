@@ -40,8 +40,6 @@
     display: grid;
     grid-template-columns: repeat(500, 1fr);
     margin: auto;
-    /* 452rem*/
-    /*padding: 1.5rem 1.5rem 1.5rem 1.5rem;*/
     border: 5px solid black;
     
 }
@@ -50,9 +48,7 @@
     height: 15px;
     border: 1px solid gray;
 }
-.cell:hover {
-    cursor: pointer;
-}
+ 
 .options {
     margin: -20px ;
     padding: 0;
@@ -76,5 +72,7 @@ li:active {
     color: black;
 }
 
-
-
+/* eraser ico */
+#change-cursor:hover {
+    cursor: url('../assets/eraser.ico'), default;
+}
