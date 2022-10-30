@@ -2,9 +2,8 @@
 let start = document.getElementById("start");
 let pause =  document.getElementById("pause");
 let reset = document.getElementById("reset");
-let instructions = document.getElementById("instructions");
+let rules = document.getElementById("rules");
 let eraser = document.getElementById("eraser");
-let resize = document.getElementById("resize");
 
 start.addEventListener("click", () => {
     // Resumes ongoing session from pause.
@@ -16,13 +15,17 @@ pause.addEventListener("click", () => {
 });
 reset.addEventListener("click", () => {
     // Restarts the game to blank position.
-
+    location.reload();
+});
+rules.addEventListener("click", () => {
+    // Redirect to the instrcutions page (opens in a new tab)
+    window.open(
+        'https://github.com/SpaceTimmi/Conway-s-Game-of-Life/blob/main/README.md',
+        '_blank'
+    );
 });
 
-instructions.addEventListener("click", () => {
-    // Toogle the instructions menu off and on.
 
-});
 
 let eraserOn = false;
 /* Not-so bright idea lol.
@@ -48,13 +51,8 @@ eraser.addEventListener("click", () => {
     }
 });
 
-resize.addEventListener("click", () => {
-    // Resize the pixels onscreen.
-     generatePalette(250);
-});
 
 // Boards logic
-
 function generatePalette(n) {
     // Generate board
     for (let i = 0; i < (n*n); i++) {
@@ -80,10 +78,9 @@ function generatePalette(n) {
 
 }
 
-function resizePalette(n) {
-    // generatePalette(...);
+function startSession() {
+    // starts the game of life.
 }
-
 
 function checkNeigbours() {
     // return 0 (alive) or 1 (dead) for each cell based on its neighbours.
@@ -91,5 +88,8 @@ function checkNeigbours() {
 }
 
 
+function main() {
+    // Loads the palette on page load.
+    generatePalette(250);
+}
 
-// Make mouse move the page.
