@@ -26,32 +26,28 @@ rules.addEventListener("click", () => {
     );
 });
 
-
-
 let eraserOn = false;
 /* Not-so bright idea lol.
 keeps track of if I'm trying to clear a cell or mark a cell.
 */
 eraser.addEventListener("click", () => {
-    // Allow user to erase cells that have been marked.
-    let cells = document.querySelectorAll(".cell");
+    // Active the eraser icon for the boards.
+    activateEraserIcon()
+});
 
+function activateEraserIcon() {
+    let boards = document.getElementsByClassName('boards-container')[0]
     if (eraserOn === false) {
-        cells.forEach((item) => {
-            item.setAttribute('id', 'change-cursor');
-        });
+        boards.setAttribute('id',  'change-cursor');
         eraserOn = true;
         eraser.innerHTML = "Eraser(ON)";
 
     } else {
-        cells.forEach((item) => {
-            item.removeAttribute('id');
-        })
+        boards.removeAttribute('id');
         eraserOn = false;
         eraser.innerHTML = "Eraser(OFF)";
     }
-});
-
+}
 
 // Boards logic
 function generatePalette(n) {
@@ -220,10 +216,6 @@ function getColor(n) {
     .style.backgroundColor === "black") ? "black" : "white";
     return color;
 }
-
-
-
-
 
 function main() {
     // Loads the palette on page load.
