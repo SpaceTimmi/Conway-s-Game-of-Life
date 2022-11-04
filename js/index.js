@@ -3,7 +3,6 @@ let start = document.getElementById("start");
 let pause =  document.getElementById("pause");
 let reset = document.getElementById("reset");
 let rules = document.getElementById("rules");
-let eraser = document.getElementById("eraser");
 let intervalID;
 
 start.addEventListener("click", () => {
@@ -26,29 +25,6 @@ rules.addEventListener("click", () => {
     );
 });
 
-let eraserOn = false;
-/* Not-so bright idea lol.
-keeps track of if I'm trying to clear a cell or mark a cell.
-*/
-eraser.addEventListener("click", () => {
-    // Active the eraser icon for the boards.
-    activateEraserIcon()
-});
-
-function activateEraserIcon() {
-    let boards = document.getElementsByClassName('boards-container')[0]
-    if (eraserOn === false) {
-        boards.setAttribute('id',  'change-cursor');
-        eraserOn = true;
-        eraser.innerHTML = "Eraser(ON)";
-
-    } else {
-        boards.removeAttribute('id');
-        eraserOn = false;
-        eraser.innerHTML = "Eraser(OFF)";
-    }
-}
-
 // Boards logic
 function generatePalette(n) {
     // Generate board
@@ -64,12 +40,11 @@ function generatePalette(n) {
     document.querySelectorAll(".cell").forEach((item) => {
         item.addEventListener("click", () => {
             console.log("clicked")
-                        
-            if (eraserOn) { // eraserOn from line 27.
-                item.style.backgroundColor = "white";
-            } else {
-                item.style.backgroundColor = "black";
-            }
+
+            let check = (item.style.backgroundColor === 'black') 
+                        ? 'white' 
+                        : 'black'
+            item.style.backgroundColor = check;
         })
     });
 }
