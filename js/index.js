@@ -7,7 +7,7 @@ let intervalID;
 
 start.addEventListener("click", () => {
     // starts a session or resumes ongoing session from pause.
-    intervalID = setInterval(startSession, 1000);
+    intervalID = setInterval(startSession, 100);
 });
 pause.addEventListener("click", () => {
     // Pauses ongoing session.
@@ -30,7 +30,7 @@ function generatePalette(n) {
     // Generate board
     for (let i = 0; i < (n*n); i++) {
         let divElem = document.createElement('div');
-        divElem.setAttribute('class', 'cell');
+        divElem.setAttribute('class', 'cell dead');
         divElem.setAttribute('id', `${i}`);
         document
         .getElementById("boards")
@@ -40,36 +40,49 @@ function generatePalette(n) {
     document.querySelectorAll(".cell").forEach((item) => {
         item.addEventListener("click", () => {
             console.log("clicked")
-
+            // Change the background color of the cell.
             let check = (item.style.backgroundColor === 'black') 
-                        ? 'white' 
-                        : 'black'
+                        ? 'white' : 'black';
             item.style.backgroundColor = check;
+
+            // Change cell status from dead to alive (or vice-versa).
+            let oldStatus = item.getAttribute('class').split(" ")[1];
+            let newStatus = (oldStatus === "alive") 
+                        ? 'dead' : 'alive';
+            item.setAttribute('class', `cell ${newStatus}`);
         })
     });
 }
 
 function startSession() {
     // starts the game of life.
+    updateNeighbors();
+    updateColors();
+}
+
+function updateNeighbors() {
     document.querySelectorAll('.cell').forEach((item) => {
         let itemId = item.getAttribute('id');
         let res = checkNeighbors(itemId);
+
         if (res === 0) {
-            // (alive)
-            item.style.backgroundColor = 'black';
-        } else if (res === 1) {
-            // (dead)
-            item.style.backgroundColor = 'white';
+            item.setAttribute('class', 'cell alive');
+        } else {
+            item.setAttribute('class', 'cell dead');
         }
     });
 }
 
+function updateColors() {
+    document.querySelectorAll('.alive').forEach((item) => {
+        item.style.backgroundColor = 'black';
+    });
+    document.querySelectorAll('.dead').forEach((item) => {
+        item.style.backgroundColor = "white";
+    });
+}
+
 function checkNeighbors(strN) {
-    // return 0 (alive) or 1 (dead) for each cell based on its neighbours.
-    // if 0 <= n <= 499 (top row)
-    // if 62000 <= n <= 62500 (bottom row)
-    // if (n % 500) == 0 (left-most column)
-    // if (n + 1) % 500 == 0 (right-most column)
     const n = parseInt(strN);
     const edges = [0, 499, 62000, 62499];
     let allNeighbors;    
@@ -140,9 +153,7 @@ function isAlive(cellN, neighbours) {
     }
 }
 function noOfLiveCells(arr) {
-    // Takes an array of colors (string) and return an array of two elemenets.
-    // result[0] -> no of alive cells
-    // result[1] -> no of dead cells
+    // return the number of alive cells from a list of cell colors.
     let alive = 0;
     arr.forEach((item) => {
         if (item === "black") {
